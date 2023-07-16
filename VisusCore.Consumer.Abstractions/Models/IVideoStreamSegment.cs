@@ -13,9 +13,14 @@ public interface IVideoStreamSegment
     string StreamId { get; }
 
     /// <summary>
+    /// Gets the segment metadata.
+    /// </summary>
+    IVideoStreamSegmentMetadata Metadata { get; }
+
+    /// <summary>
     /// Gets the fragmented mp4 initialization data.
     /// </summary>
-    ReadOnlySpan<byte> Init { get; }
+    IVideoStreamInit Init { get; }
 
     /// <summary>
     /// Gets the fragmented mp4 data.

@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VisusCore.Consumer.Abstractions\VisusCore.Consumer.Abstractions.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
+    <ProjectReference Include="..\VisusCore.Consumer.Abstractions\VisusCore.Consumer.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
