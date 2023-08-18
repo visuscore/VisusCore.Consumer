@@ -29,4 +29,9 @@ public interface IVideoStreamSegmentMetadata
     /// Gets the number of frames in the segment.
     /// </summary>
     long FrameCount { get; }
+
+    /// <summary>
+    /// Gets the size of the segment in bytes.
+    /// </summary>
+    long Size { get; }
 }
