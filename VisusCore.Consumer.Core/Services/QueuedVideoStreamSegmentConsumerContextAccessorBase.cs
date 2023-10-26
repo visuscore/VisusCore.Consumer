@@ -15,6 +15,11 @@ public abstract class QueuedVideoStreamSegmentConsumerContextAccessorBase<TConte
         bool createIfNotExists = true,
         CancellationToken cancellationToken = default)
     {
+        if (actionAsync is null)
+        {
+            throw new ArgumentNullException(nameof(actionAsync));
+        }
+
         var context = createIfNotExists
             ? GetOrAddContext(streamId)
             : _contexts[streamId];
@@ -37,6 +42,11 @@ public abstract class QueuedVideoStreamSegmentConsumerContextAccessorBase<TConte
         bool createIfNotExists = true,
         CancellationToken cancellationToken = default)
     {
+        if (actionAsync is null)
+        {
+            throw new ArgumentNullException(nameof(actionAsync));
+        }
+
         var context = createIfNotExists
             ? GetOrAddContext(streamId)
             : _contexts[streamId];

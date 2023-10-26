@@ -11,8 +11,14 @@ public abstract class QueuedVideoStreamSegmentConsumerBase<TContext> : IVideoStr
     protected QueuedVideoStreamSegmentConsumerBase(QueuedVideoStreamSegmentConsumerContextAccessorBase<TContext> contextAccessor) =>
         _contextAccessor = contextAccessor;
 
-    public Task ConsumeAsync(IVideoStreamSegment segment, CancellationToken cancellationToken = default) =>
-        _contextAccessor.InvokeLockedAsync(
+    public Task ConsumeAsync(IVideoStreamSegment segment, CancellationToken cancellationToken = default)
+    {
+        if (segment is null)
+        {
+            throw new ArgumentNullException(nameof(segment));
+        }
+
+        return _contextAccessor.InvokeLockedAsync(
             segment.StreamId,
             context =>
             {
@@ -21,6 +27,7 @@ public abstract class QueuedVideoStreamSegmentConsumerBase<TContext> : IVideoStr
                 return SegmentQueuedAsync(context, segment, cancellationToken);
             },
             cancellationToken: cancellationToken);
+    }
 
     protected virtual Task SegmentQueuedAsync(
         TContext context,
